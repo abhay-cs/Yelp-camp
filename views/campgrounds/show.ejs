@@ -1,0 +1,50 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card mb-5">
+                <img src="<%= campground.image%>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <%= campground.title%>
+                    </h4>
+                    <p class="card-text">
+                        <%= campground.description%>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted">
+                        <%= campground.location%>
+                    </li>
+                    <li class="list-group-item">$<%= campground.price%>/night</li>
+                </ul>
+                <div class="card-body">
+                    <a class="btn btn-info card-link" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+                    <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+
+                </div>
+            </div>
+            <!-- Review Area (Create form)-->
+            <form action="/campgrounds/<%=campground._id%>/reviews" method="POST" class="mb-3 validated-form"
+                novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="rating">Rating</label>
+                    <input class="form-range" min="0" max="5" step="1" type="range" id="rating" name="review[rating]">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="body">Review</label>
+                    <textarea class="form-control" name="review[body]" id="body" cols="30" rows="4" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <button class="btn btn-success">Submit</button>
+
+            </form>
+            <!-- Review Display -->
+            
+        </div>
+    </div>
